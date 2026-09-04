@@ -1,0 +1,26 @@
+# 本机数据库连接信息，由安装向导生成，严禁提交。
+/includes/database.php
+
+# 安装完成标记属于部署状态，不应进入源码仓库。
+/install/install.lock
+
+# 用户上传、接口缓存和运行日志。
+/down/upload/*
+!/down/upload/.gitkeep
+/api/zaobao/新闻.txt
+*.log
+
+# 本地遗留备份文件不参与发布。
+/admin/保存.txt
+/assets/iframe/新建文件
+*.bak
+*.bak.*
+
+# 常见本地环境与编辑器文件。
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

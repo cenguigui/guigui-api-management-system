@@ -1,0 +1,231 @@
+/*右侧悬浮box和赞赏码*/
+/* 悬浮盒子 */
+.guigui_xfkp {
+	position: fixed;
+	right: 120px;
+	bottom: 50px;
+	box-sizing: border-box;
+	padding: 18px 10px 22px 20px;
+	width: 400px;
+	height: 175px;
+	border-radius: 20px;
+	background-color: #ffffff;
+	background-position: right 50%;
+	background-repeat: no-repeat;
+	background-size: 130px;
+	box-shadow: 0px 0px 8px rgba(236, 59, 136, 0.35);
+	/*background-image: url(https://cache.cenguigui.cn/images/loginee.png);*/
+	transition: right 1s linear 0s;
+	z-index: 3;
+	animation: jinru 2s;
+	-webkit-animation: jinru 2s;
+	--guigui_right: -500px;
+	--guigui_right_go: 120px;
+}
+
+@keyframes jinru {
+	0% {
+		right: var(--guigui_right);
+	}
+
+	100% {
+		right: var(--guigui_right_go);
+	}
+}
+
+.guigui_biaoti {
+	margin-bottom: 10px;
+	color: rgb(0, 0, 0);
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#guigui_jzsc {
+	color: #000000;
+}
+
+.guigui_text {
+	margin: 15px 0;
+	color: rgb(255, 127, 227);
+}
+
+.guigui_zanzhu {
+	width: 100px;
+	height: 35px;
+	text-align: center;
+	line-height: 35px;
+	border-radius: 10px;
+	background-color: #ffb5c3;
+}
+
+.guigui_zanzhu p {
+	color: #ffffff;
+	font-weight: bold;
+	display: block;
+	width: 100px;
+	height: 35px;
+	cursor: pointer;
+}
+
+.guigui_zanzhu p:hover {
+	transition: 0.8s all;
+	color: rgb(247, 54, 86);
+}
+
+.guigui_xfkpgb {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+
+.guigui_xfkpgb svg {
+	width: 30px;
+	height: 30px;
+	transform: rotate(0deg);
+	transition: transform 0.5s linear 0s;
+}
+
+.guigui_xfkpgb svg:hover {
+	transform: rotate(-720deg);
+}
+
+/* 赞助box */
+/* 二维码 */
+.guigui_skm_box {
+	/* display: none; */
+	position: fixed;
+	z-index: 3;
+	right: 150px;
+	bottom: 300px;
+	width: 475px;
+	height: 175px;
+	padding-top: 38px;
+	/* 收款码box方框 */
+	background: url(https://p0.meituan.net/csc/84b24f36435ac8e9440b497a7b614ecc24322.png) no-repeat top;
+	/*background: url(https://api.cenguigui.cn/api/weibo/api.php?type=img&url=https://tvax1.sinaimg.cn/large/008DVBeIgy1hsjtyne6obj30eo04gjrp.jpg) no-repeat top;*/
+	background-size: 100% auto;
+	transition: right 2s linear 0s;
+	animation: guigui_skmdh 2s;
+	/* --guigui_skm:-500px;
+	--guigui_skm_to:150px; */
+}
+
+@keyframes guigui_skmdh {
+	0% {
+		right: var(--guigui_skm);
+		opacity: 0;
+	}
+
+	100% {
+		right: var(--guigui_skm_to);
+		opacity: 1;
+	}
+}
+
+.guigui_skm {
+	width: 475px;
+	height: 190px;
+	display: flex;
+	padding: 10px;
+	border: 1px solid #FFB5C3;
+	border-radius: 8px;
+	background-color: #ffffff;
+	box-shadow: inset 0 5px 25px 0 #FFD1D8;
+}
+
+.guigui_skm_img_p {
+	width: 400px;
+	height: 175px;
+	cursor: default;
+}
+
+.guigui_skm_img_p img {
+	width: 150px;
+	height: 150px;
+}
+
+.guigui_skm_img_p p {
+	text-align: center;
+	font-weight: bold;
+				/* padding-top: 10px; */
+	color: #000000;
+}
+
+.guigui_skm svg {
+	position: absolute;
+	top: 20px;
+	right: -20px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	transition: transform 0.5s linear 0s;
+}
+
+.guigui_skm svg:hover {
+	transform: rotate(-720deg);
+}
+	/* 手机端隐藏美化赞赏码 */
+@media screen and (max-width:990px) {
+	/* 隐藏悬浮的box */
+	.guigui_xfkp {
+		display: none;
+	}
+	/* 美化赞赏码box */
+	.guigui_skm_box {
+		display: none;
+	}
+}
+
+/* 手机端打赏码 */
+.guigui_reward {
+	font-size: 16px;
+	text-align: center;
+	display:
+		none;
+}
+
+#rewardButton {
+	/* border: 1px solid#f77b83; */
+	background-color:
+		#00000000;
+	line-height: 36px;
+	text-align: center;
+	cursor: pointer;
+	height:
+		36px;
+	display: block;
+	border-radius: 4px;
+	transition-duration: .4s;
+	color:
+		#fff;
+	margin: 0 auto;
+	padding: 0 25px;
+	outline-style: none;
+}
+
+#QR {
+	padding-top:
+		20px;
+}
+
+#QR img {
+	width: 180px;
+	max-width: 100%;
+	display: inline-block;
+	margin: .8em 2em 0;
+	border: 1px solid #ddd;
+	padding: 3px;
+	background: #f8f8f8;
+}
+
+/* 手机端隐藏美化赞赏码 */
+@media screen and (max-width:980px) {
+
+	/* 显示简易版的打赏 */
+	.guigui_reward {
+		display: block;
+	}
+}

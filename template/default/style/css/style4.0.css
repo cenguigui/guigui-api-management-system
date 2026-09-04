@@ -1,0 +1,266 @@
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255,255,255,0.1);
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ee7f71;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0 #ee7f71;
+}
+
+/* font */
+@font-face{
+	font-family:GuiguiFontStyle;
+	/*src:url("https://cdn.cenguigui.cn/fonts/fonts.woff2") format("woff2");*/
+	/* src:url("https://jsd.cdn.zzko.cn/gh/cenguigui/cdn@master/fonts/fonts.woff2") format("woff2"); */
+	src:url("https://cdn.jsdmirror.com/gh/cenguigui/cdn@master/fonts/fonts.woff2") format("woff2");
+	font-display:swap;
+}
+*{
+	font-family:GuiguiFontStyle;
+}
+html,body,h1,h2,h3,h4,h5,h6,p,code,label,span,code, kbd, pre, samp{
+    font-family:GuiguiFontStyle!important;
+}
+
+body {
+	/*background-color:#fff;*/
+	color:#fff;
+	font-family:'楷体';
+	cursor:url("../img/normal.cur"),default
+}
+body:before {
+	content:"";
+	position:fixed;
+	z-index:-1;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	/*background:url('https://cache.cenguigui.cn/images/img/1.jpg');*/
+	background: var(--guigui_bg_img);
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size:cover;
+}
+a,button {
+	cursor:url("../img/link.cur"),pointer
+}
+h2 {
+	font-size:1.2rem
+}
+h2::before {
+	content:'# '
+}
+.title {
+	font-weight:bold;
+	transition:all .3s;
+	font-size:1.2rem;
+	line-height:56px
+}
+.title::before {
+	content:'# ';
+	color:#fff
+}
+.title:hover {
+	transform:translate(2px,-2px)
+}
+.title a {
+	color:#fff;
+	transition:.3s
+}
+.navigation a {
+	color:#fff;
+	transition:.3s
+}
+.home:hover {
+	color:rgba(0,250,154,1)
+}
+.this:hover {
+	color:rgba(255,99,71,1)
+}
+.yd {
+	width:110px;
+	height:101px;
+	transition:all .5s;
+	background-color:rgba(0,250,154,1)
+}
+.yd:hover {
+	transform:translate(100px,100px)
+}
+.content {
+	opacity:0
+}
+.hot {
+	font-weight:700;
+	padding:5px 15px;
+	margin:0 5px 5px 0;
+	border-radius:25px;
+	background-color:rgba(255,64,73,0.2);
+	color:#ff4049;
+	transition:all .3s
+}
+.hot:hover {
+	background-color:rgba(255,64,73,.4)
+}
+.auther {
+	font-weight:700;
+	padding:5px 15px;
+	margin:0 5px 5px 0;
+	border-radius:25px;
+	background-color:rgba(44,204,204,0.2);
+	color:#2ccccc;
+	transition:all .3s
+}
+.auther:hover {
+	background-color:rgba(44,204,204,.4)
+}
+.api {
+	line-height:46px;
+	font-weight:bold
+}
+.api::before {
+	color:#23abfb
+}
+.apicode {
+	display:inline-block;
+	font-weight:bold;
+	padding:5px 15px;
+	margin:0 5px 5px 0;
+	border-radius:25px;
+	background-color:rgba(35,171,251,0);
+	color:#23abfb;
+	transition:all .3s
+}
+.apicode:hover {
+	background-color:rgba(35,171,251,.2)
+}
+.return {
+	font-weight:bold;
+	line-height:46px
+}
+.return::before {
+	color:#ffbd29
+}
+.returncode {
+	display:inline-block;
+	font-weight:bold;
+	padding:5px 15px;
+	margin:0 5px 5px 0;
+	border-radius:25px;
+	background-color:rgba(255,189,41,0);
+	color:#ffbd29;
+	transition:all .3s
+}
+.returncode:hover {
+	background-color:rgba(255,189,41,.2)
+}
+.request {
+	font-weight:bold;
+	line-height:46px
+}
+.request::before {
+	color:#51ce28
+}
+.requestcode {
+	display:inline-block;
+	font-weight:bold;
+	padding:5px 15px;
+	margin:0 5px 5px 0;
+	border-radius:25px;
+	background-color:rgba(81,206,40,0);
+	color:#51ce28;
+	transition:all .3s
+}
+.requestcode:hover {
+	background-color:rgba(81,206,40,.2)
+}
+.example {
+	font-weight:bold;
+	line-height:46px
+}
+.example::before {
+	color:#ff7070
+}
+.examplecode {
+	display:inline-block;
+	font-weight:bold;
+	padding:5px 15px;
+	margin:0 5px 5px 0;
+	border-radius:25px;
+	background-color:rgba(255,112,112,0);
+	color:#ff7070;
+	transition:all .3s;
+	word-wrap:break-word;
+	word-break:break-all;
+}
+.examplecode:hover {
+	background-color:rgba(255,112,112,.2)
+}
+.canshu {
+	font-weight:bold;
+	line-height:46px
+}
+.canshu::before {
+	color:#d941ff
+}
+.result {
+	font-weight:bold;
+	line-height:46px
+}
+.result::before {
+	color:#2ccccc
+}
+.apihead {
+	border:0
+}
+.apicon {
+	margin-top:36px
+}
+.diaoyong {
+	font-weight:bold;
+	line-height:46px
+}
+.diaoyong::before {
+	color:#ffbd29
+}
+.layui-code {
+	background-color:rgba(0,0,0,0.4);
+	color:#fff!important
+}
+.layui-bg-orange {
+	width:10%;
+	margin:26px 0 36px 0
+}
+.layui-table {
+	background:rgba(255,255,255,0);
+	color:#fff
+}
+.layui-table thead tr {
+	background:rgba(255,255,255,0);
+	color:#fff
+}
+.layui-table tbody tr:hover {
+	background:rgba(0,0,0,0.2)
+}
+.footer {
+	margin-top:36px;
+	margin-bottom:16px;
+	text-align:center;
+	font-weight:300;
+}
+.footer a {
+	color:#ffffff;
+	transition:.3s;
+}
+.footer a:hover {
+	color:#6495ED;
+}
+* {
+	font-family:'楷体';
+}

@@ -1,0 +1,16 @@
+<?php
+/**
+ * 数据库配置示例。
+ *
+ * 推荐通过 /install 安装向导生成 database.php。手动部署时，可将本文件复制为
+ * database.php 后再填写真实信息；database.php 已被 Git 忽略，请勿提交凭据。
+ */
+$dbconfig = array(
+    'host' => '127.0.0.1', // 数据库服务器
+    'port' => '3306', // 数据库端口
+    'user' => 'your_database_user', // 数据库用户名
+    'pwd' => 'your_database_password', // 数据库密码
+    'dbname' => 'your_database_name', // 数据库名
+    'dbqz' => 'api' // 数据表前缀，通常无须修改
+);
+

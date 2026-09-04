@@ -1,0 +1,9 @@
+/* 隐藏横向和纵向滚动条 */
+body {
+    overflow-x: hidden; /* 隐藏横向滚动条 */
+    overflow-y: hidden; /* 隐藏纵向滚动条 */
+}
+
+html,body,h1,h2,h3,h4,h5,h6,p,code,label,span,code, kbd, pre, samp, input[type="text"], input[type="password"]{
+    font-family: '楷体';
+}

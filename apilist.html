@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API接口价格 - 笒鬼鬼服务</title>
+
+    <!-- 使用字节跳动CDN库 -->
+    <link href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/layui/2.9.4/css/layui.min.css" rel="stylesheet">
+    <link href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+    <style>
+        /* CDNJS 镜像服务 - 主样式文件 */
+        :root {
+            --primary: #ffacc7;
+            /* 更柔和的粉色主色调 */
+            --primary-dark: #ff8aac;
+            --primary-light: #fff5f8;
+            --secondary: #fffafb;
+            /* 更淡的粉色背景 */
+            --accent: #ffc2d6;
+            /* 柔和的粉色强调色 */
+            --success: #b8e6b8;
+            /* 柔和的淡绿色 */
+            --info: #c5e8f7;
+            /* 柔和的淡蓝色 */
+            --warning: #ffe0b8;
+            /* 柔和的淡橙色 */
+            --danger: #ffb8c2;
+            /* 柔和的淡红色 */
+            --light: #ffffff;
+            /* 纯白背景 */
+            --bg-gray: #fffafb;
+            /* 淡粉色灰色背景 */
+            --surface: #ffffff;
+            /* 表面颜色 */
+            --border-light: #ffeef2;
+            /* 边框颜色 */
+            --text-primary: #6a4b5a;
+            /* 主要文字 - 更柔和的深粉色 */
+            --text-secondary: #b298a3;
+            /* 次要文字 - 更柔和的浅粉色 */
+            --dark: #6a4b5a;
+            /* 深色 - 更柔和的深粉色 */
+            --text-disabled: #e0d1d8;
+            /* 禁用文字 */
+            --border: #ffdde6;
+            /* 边框色 */
+            --shadow: 0 4px 12px rgba(255, 172, 199, 0.18);
+            /* 粉色轻微阴影 */
+            --shadow-hover: 0 8px 24px rgba(255, 172, 199, 0.25);
+            /* 粉色悬停阴影 */
+            --shadow-card: 0 4px 12px rgba(255, 172, 199, 0.15), 0 2px 6px rgba(255, 172, 199, 0.1);
+            /* 粉色卡片阴影 */
+            --transition: all 0.3s cubic-bezier(0.34, 0.69, 0.1, 1);
+            /* 卡通风格过渡 */
+            --radius: 16px;
+            /* iOS 兼容颜色 */
+            --ios-blue: #ffacc7;
+            --ios-gray: #fffafb;
+            --ios-dark-gray: #6a4b5a;
+            --ios-light-gray: #ffeef2;
+            --ios-red: #ffb8c2;
+            --ios-green: #b8e6b8;
+            --ios-orange: #ffe0b8;
+            --ios-purple: #e6c2ff;
+            --ios-pink: #ffacc7;
+            --ios-cyan: #c5e8f7;
+            --ios-yellow: #fff5b8;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Bubblegum Sans', cursive, sans-serif;
+            background: linear-gradient(135deg, #fffafb 0%, #fff5f8 50%, #fffafb 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 172, 199, 0.1) 0px, transparent 80px),
+                radial-gradient(circle at 80% 30%, rgba(255, 138, 172, 0.08) 0px, transparent 60px),
+                radial-gradient(circle at 40% 70%, rgba(255, 194, 214, 0.12) 0px, transparent 100px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--border-light);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        .layui-layer-molv .layui-layer-title {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+        }
+
+        /* 昼夜切换按钮 */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 99;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-hover);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        [data-theme="dark"] .theme-toggle {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(255, 138, 172, 0.3);
+        }
+
+        [data-theme="dark"] .theme-toggle:hover {
+            background: var(--primary);
+            box-shadow: 0 8px 24px rgba(255, 138, 172, 0.4);
+        }
+
+        /* 卡通风格背景装饰 */
+        .cartoon-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .cartoon-cloud,
+        .cartoon-star,
+        .cartoon-heart,
+        .cartoon-sparkle {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.4;
+            animation: floatAnimation 8s ease-in-out infinite;
+            filter: drop-shadow(2px 2px 4px rgba(255, 172, 199, 0.4));
+            z-index: 1;
+        }
+
+        .cartoon-cloud {
+            color: #ffffff;
+            text-shadow: 3px 3px 6px rgba(255, 194, 214, 0.6);
+            font-size: 3rem;
+        }
+
+        .cartoon-star {
+            color: #fffacd;
+            animation-delay: 1s;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+        }
+
+        .cartoon-heart {
+            color: #ffacc7;
+            animation-delay: 2s;
+            text-shadow: 0 0 12px rgba(255, 172, 199, 0.6);
+        }
+
+        .cartoon-sparkle {
+            color: #b8e6ff;
+            animation-delay: 3s;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(184, 230, 255, 0.6);
+        }
+
+        /* 装饰元素位置和动画 */
+        .cloud-1 {
+            top: 15%;
+            left: 5%;
+            animation-duration: 12s;
+        }
+
+        .cloud-2 {
+            top: 55%;
+            right: 8%;
+            animation-duration: 15s;
+            animation-delay: 3s;
+        }
+
+        .cloud-3 {
+            top: 25%;
+            right: 20%;
+            animation-duration: 18s;
+            animation-delay: 6s;
+        }
+
+        .star-1 {
+            top: 10%;
+            right: 12%;
+            animation-duration: 8s;
+        }
+
+        .star-2 {
+            top: 65%;
+            left: 12%;
+            animation-duration: 10s;
+            animation-delay: 2s;
+        }
+
+        .star-3 {
+            top: 35%;
+            left: 25%;
+            animation-duration: 14s;
+            animation-delay: 4s;
+        }
+
+        .heart-1 {
+            top: 20%;
+            left: 35%;
+            animation-duration: 9s;
+        }
+
+        .heart-2 {
+            top: 60%;
+            right: 30%;
+            animation-duration: 11s;
+            animation-delay: 5s;
+        }
+
+        .sparkle-1 {
+            top: 45%;
+            left: 15%;
+            animation-duration: 7s;
+        }
+
+        .sparkle-2 {
+            top: 30%;
+            right: 40%;
+            animation-duration: 9s;
+            animation-delay: 2s;
+        }
+
+        .sparkle-3 {
+            top: 70%;
+            right: 15%;
+            animation-duration: 11s;
+            animation-delay: 4s;
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-25px) translateX(15px) scale(1.15) rotate(8deg);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-12px) translateX(-8px) scale(1.08) rotate(-5deg);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translateY(15px) translateX(8px) scale(0.92) rotate(4deg);
+                opacity: 0.35;
+            }
+        }
+
+        /* 添加脉动动画效果 */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+        }
+
+        .cartoon-heart {
+            animation: floatAnimation 9s ease-in-out infinite, pulse 3s ease-in-out infinite;
+        }
+
+        .cartoon-star {
+            animation: floatAnimation 10s ease-in-out infinite, pulse 4s ease-in-out infinite 1s;
+        }
+
+        /* 电脑端特有样式 */
+        @media (min-width: 992px) {
+            .container {
+                max-width: 1200px;
+                padding: 0 30px;
+            }
+
+            .header {
+                padding: 20px 0;
+                margin-bottom: 30px;
+            }
+
+            .header-title {
+                font-size: 1.8rem;
+                text-align: left;
+                padding-left: 15px;
+            }
+
+            .search-container {
+                padding: 20px;
+                margin: 0 0 30px 0;
+                border-radius: 12px;
+            }
+
+            .api-list-container {
+                padding: 0;
+            }
+
+            .api-card {
+                margin-bottom: 15px;
+                border-radius: 14px;
+            }
+
+            .api-card .card-body {
+                padding: 20px;
+            }
+
+            .api-icon {
+                width: 50px;
+                height: 50px;
+                border-radius: 12px;
+            }
+
+            .api-name {
+                font-size: 18px;
+            }
+
+            .api-price {
+                font-size: 17px;
+            }
+
+            .page-btn {
+                padding: 10px 20px;
+                margin: 0 10px;
+            }
+        }
+
+        /* 共用样式 */
+        .header {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--light) 100%);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 9;
+            box-shadow: var(--shadow);
+        }
+
+        .header-title {
+            font-weight: 600;
+            font-size: 1.4rem;
+            text-align: center;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .search-container {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 15px;
+            margin: 15px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-light);
+        }
+
+        .search-input {
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            font-size: 16px;
+            background: var(--light);
+            color: var(--text-primary);
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(255, 172, 199, 0.2);
+            outline: none;
+        }
+
+        .api-list-container {
+            padding: 0 15px;
+        }
+
+        .api-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            cursor: pointer;
+        }
+
+        .api-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .api-card .card-body {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .api-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .api-content {
+            flex-grow: 1;
+        }
+
+        .api-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .api-price {
+            font-weight: 500;
+        }
+
+        .price-free {
+            color: var(--success);
+        }
+
+        .price-paid {
+            color: var(--warning);
+        }
+
+        .price-not-sale {
+            color: var(--danger);
+        }
+
+        .api-arrow {
+            color: #C7C7CC;
+            margin-left: 8px;
+            font-size: 14px;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .page-btn {
+            background: white;
+            border: 1px solid var(--ios-light-gray);
+            border-radius: 8px;
+            padding: 8px 16px;
+            margin: 0 8px;
+            font-weight: 500;
+            color: var(--ios-blue);
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover {
+            background-color: rgba(0, 122, 255, 0.1);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            background: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        /* 彩色图标背景 */
+        .icon-bg-1 {
+            background-color: rgba(255, 172, 199, 0.15);
+            color: var(--primary);
+        }
+
+        .icon-bg-2 {
+            background-color: rgba(184, 230, 184, 0.15);
+            color: var(--success);
+        }
+
+        .icon-bg-3 {
+            background-color: rgba(255, 224, 184, 0.15);
+            color: var(--warning);
+        }
+
+        .icon-bg-4 {
+            background-color: rgba(230, 194, 255, 0.15);
+            color: var(--ios-purple);
+        }
+
+        .icon-bg-5 {
+            background-color: rgba(255, 194, 214, 0.15);
+            color: var(--primary-dark);
+        }
+
+        .icon-bg-6 {
+            background-color: rgba(197, 232, 247, 0.15);
+            color: var(--info);
+        }
+
+        .icon-bg-7 {
+            background-color: rgba(255, 245, 184, 0.15);
+            color: var(--ios-yellow);
+        }
+
+        .icon-bg-8 {
+            background-color: rgba(255, 184, 194, 0.15);
+            color: var(--danger);
+        }
+
+        /* 夜间模式配色 */
+        [data-theme="dark"] {
+            --primary: #ffacc7;
+            --primary-dark: #ff8aac;
+            --primary-light: #2a1f25;
+            --secondary: #1a1416;
+            --accent: #ffc2d6;
+            --success: #88d4b5;
+            --info: #95d8f7;
+            --warning: #ffd8a8;
+            --danger: #ffb8c2;
+            --light: #1a1416;
+            --bg-gray: #1a1416;
+            --surface: #2a1f25;
+            --border-light: #3a2d35;
+            --text-primary: #ffffff;
+            --text-secondary: #d9c2c9;
+            --dark: #ffffff;
+            --text-disabled: #8a7a82;
+            --border: #4a3d45;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.3);
+            --ios-blue: #ffacc7;
+            --ios-gray: #1a1416;
+            --ios-dark-gray: #ffffff;
+            --ios-light-gray: #3a2d35;
+            --ios-red: #ffb8c2;
+            --ios-green: #88d4b5;
+            --ios-orange: #ffd8a8;
+            --ios-purple: #d4a8ff;
+            --ios-pink: #ffacc7;
+            --ios-cyan: #95d8f7;
+            --ios-yellow: #fff5a8;
+        }
+
+        /* 夜间模式下的卡通装饰 */
+        [data-theme="dark"] .cartoon-cloud,
+        [data-theme="dark"] .cartoon-star,
+        [data-theme="dark"] .cartoon-heart,
+        [data-theme="dark"] .cartoon-sparkle {
+            opacity: 0.15;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        [data-theme="dark"] .cartoon-cloud {
+            color: #6a4b5a;
+        }
+
+        [data-theme="dark"] .cartoon-star {
+            color: #8a7a82;
+        }
+
+        [data-theme="dark"] .cartoon-heart {
+            color: #ff8aac;
+        }
+
+        [data-theme="dark"] .cartoon-sparkle {
+            color: #6a7a8a;
+        }
+
+        [data-theme="dark"] body {
+            background: linear-gradient(135deg, #1a1416 0%, #2a1f25 50%, #1a1416 100%);
+        }
+
+        [data-theme="dark"] body::before {
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(255, 172, 199, 0.08) 0px, transparent 80px),
+                radial-gradient(circle at 80% 30%, rgba(255, 138, 172, 0.06) 0px, transparent 60px),
+                radial-gradient(circle at 40% 70%, rgba(255, 194, 214, 0.1) 0px, transparent 100px);
+        }
+
+        /* 电脑端网格布局 */
+        @media (min-width: 768px) {
+            .api-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 15px;
+            }
+
+            .api-list>div {
+                margin-bottom: 0;
+            }
+
+            .api-card {
+                margin-bottom: 0;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 卡通风格背景装饰 -->
+    <div class="cartoon-background">
+        <div class="cartoon-cloud cloud-1">☁️</div>
+        <div class="cartoon-cloud cloud-2">☁️</div>
+        <div class="cartoon-cloud cloud-3">☁️</div>
+        <div class="cartoon-star star-1">✨</div>
+        <div class="cartoon-star star-2">✨</div>
+        <div class="cartoon-star star-3">✨</div>
+        <div class="cartoon-heart heart-1">💖</div>
+        <div class="cartoon-heart heart-2">💖</div>
+        <div class="cartoon-sparkle sparkle-1">🌟</div>
+        <div class="cartoon-sparkle sparkle-2">🌟</div>
+        <div class="cartoon-sparkle sparkle-3">🌟</div>
+    </div>
+
+    <!-- 昼夜切换按钮 -->
+    <button class="theme-toggle" id="themeToggle" title="切换主题">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <div class="header">
+        <div class="container">
+            <h1 class="header-title animate__animated animate__fadeIn">API接口价格</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="search-container animate__animated animate__fadeIn">
+            <div class="row align-items-center">
+                <div class="col-md-9 mb-3 mb-md-0">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0"><i class="fas fa-search text-muted"></i></span>
+                        <input type="text" id="searchInput" class="form-control search-input border-start-0" placeholder="搜索API接口名称...">
+                    </div>
+                </div>
+                <div class="col-md-3 text-md-end">
+                    <button class="btn btn-primary" onclick="openDocument()" style="border-radius: 10px; padding: 10px 20px; background: var(--primary); border: none; box-shadow: var(--shadow);">
+                        <i class="fas fa-book me-2"></i>查看文档
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="api-list-container">
+            <div class="row api-list" id="list">
+                <!-- 这里是动态加载的API列表 -->
+            </div>
+        </div>
+
+        <div class="pagination-container">
+            <button id="prevBtn" class="page-btn">
+                <i class="fas fa-chevron-left me-1"></i>上一页
+            </button>
+            <button id="nextBtn" class="page-btn">
+                下一页<i class="fas fa-chevron-right ms-1"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2023 笒鬼鬼API服务 | QQ: 2963246343 | <a href="https://qm.qq.com/q/mM5fiojqc8" target="_blank" style="color: var(--ios-blue);">加入交流群</a></p>
+    </div>
+
+    <!-- 引入必要的JS库 -->
+    <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/layui/2.9.4/layui.min.js"></script>
+
+    <script>
+        // 昼夜切换功能
+        (function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const html = document.documentElement;
+            
+            // 从 localStorage 读取主题设置，如果没有则根据系统偏好设置
+            function getInitialTheme() {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                    return savedTheme;
+                }
+                // 检查系统偏好
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            }
+            
+            // 设置主题
+            function setTheme(theme) {
+                if (theme === 'dark') {
+                    html.setAttribute('data-theme', 'dark');
+                    themeIcon.className = 'fas fa-sun';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    html.setAttribute('data-theme', 'light');
+                    themeIcon.className = 'fas fa-moon';
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+            
+            // 初始化主题
+            const initialTheme = getInitialTheme();
+            setTheme(initialTheme);
+            
+            // 切换主题
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                setTheme(newTheme);
+                
+                // 添加切换动画效果
+                themeToggle.style.transform = 'scale(0.9) rotate(180deg)';
+                setTimeout(() => {
+                    themeToggle.style.transform = '';
+                }, 200);
+            });
+            
+            // 监听系统主题变化
+            if (window.matchMedia) {
+                const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+                mediaQuery.addEventListener('change', function(e) {
+                    // 如果用户没有手动设置过主题，则跟随系统
+                    if (!localStorage.getItem('theme')) {
+                        setTheme(e.matches ? 'dark' : 'light');
+                    }
+                });
+            }
+        })();
+
+        var currentPage = 1;
+        var totalPage = 1;
+        var apiData = []; // 保存从接口获取的所有数据
+        var originalData = []; // 保存原始数据
+        var iconBackgrounds = ['icon-bg-1', 'icon-bg-2', 'icon-bg-3', 'icon-bg-4',
+            'icon-bg-5', 'icon-bg-6', 'icon-bg-7', 'icon-bg-8'
+        ];
+
+        // 函数：加载图标字体
+        function loadIconFont(iconfontUrl) {
+            if (!document.querySelector('#iconfont-script')) {
+                var script = document.createElement('script');
+                script.id = 'iconfont-script';
+                script.src = iconfontUrl;
+                script.type = 'text/javascript';
+                script.charset = 'utf-8';
+                script.onload = function() {
+                    console.log('图标字体加载成功！');
+                };
+                script.onerror = function() {
+                    console.log('图标字体加载失败！');
+                };
+                document.head.appendChild(script);
+            }
+        }
+
+        function loadApiList() {
+            $('.api-list').empty();
+            var startIndex = (currentPage - 1) * 12;
+            var endIndex = startIndex + 12;
+            var currentData = apiData.slice(startIndex, endIndex);
+
+            if (currentData.length === 0) {
+                $('.api-list').html(`
+                    <div class="col-12 text-center py-5">
+                        <i class="fas fa-search fa-3x mb-3" style="color: #D1D1D6;"></i>
+                        <h5 style="color: #8E8E93;">没有找到匹配的API接口</h5>
+                        <p class="text-muted">请尝试其他搜索关键词</p>
+                    </div>
+                `);
+                return;
+            }
+
+            var html = '';
+            currentData.forEach((item, index) => {
+                var bgClass = iconBackgrounds[index % iconBackgrounds.length];
+                var priceClass = 'price-paid';
+                var priceText = `¥${item.money}`;
+
+                if (item.money === '999.00' || item.money === 'null') {
+                    priceClass = 'price-not-sale';
+                    priceText = '非卖品';
+                } else if (item.money === '0.00') {
+                    priceClass = 'price-free';
+                }
+
+                html += `
+                    <div class="col-12">
+                        <div class="api-card animate__animated animate__fadeIn" onclick="openApiPage('${item.name}', '${item.action}')">
+                            <div class="card-body">
+                                <div class="api-icon ${bgClass}">
+                                    <svg class="guigui_icon" aria-hidden="true" style="width:24px; height:24px;">
+                                        <use xlink:href="#${item.icon}"></use>
+                                    </svg>
+                                </div>
+                                <div class="api-content">
+                                    <div class="api-name">${item.name}</div>
+                                    <div class="api-price ${priceClass}">${priceText}</div>
+                                </div>
+                                <i class="fas fa-chevron-right api-arrow"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            $('.api-list').html(html);
+            totalPage = Math.ceil(apiData.length / 12);
+
+            // 更新分页按钮状态
+            $('#prevBtn').prop('disabled', currentPage === 1);
+            $('#nextBtn').prop('disabled', currentPage >= totalPage);
+        }
+
+        function openApiPage(name, action) {
+            layui.use('layer', function() {
+                var layer = layui.layer;
+                layer.open({
+                    type: 2,
+                    title: name,
+                    shadeClose: true,
+                    shade: 0.5,
+                    scrollbar: false,
+                    maxmin: true,
+                    area: ['90%', '90%'],
+                    content: '/api/' + action + '.html',
+                    skin: 'layui-layer-molv'
+                });
+            });
+        }
+
+        $(document).ready(function() {
+            // 获取接口数据
+            $.ajax({
+                type: "post",
+                url: "/apilist.php?type=Info&page=1&limit=999",
+                timeout: 5000,
+                async: true,
+                success: function(response) {
+                    if (response.iconfont) {
+                        loadIconFont(response.iconfont);
+                    }
+                    if (Array.isArray(response.data)) {
+                        apiData = response.data;
+                        originalData = response.data;
+                        loadApiList();
+                    } else {
+                        console.error("返回的数据不是预期的数组类型");
+                    }
+                },
+                error: function() {
+                    layui.use('layer', function() {
+                        var layer = layui.layer;
+                        layer.msg('数据加载失败，请刷新重试', {
+                            icon: 2
+                        });
+                    });
+                }
+            });
+
+            // 搜索功能
+            $('#searchInput').on('input', function() {
+                var search = $(this).val().trim().toLowerCase();
+                if (search === '') {
+                    apiData = originalData.slice();
+                } else {
+                    apiData = originalData.filter(item =>
+                        item.name.toLowerCase().includes(search)
+                    );
+                }
+                currentPage = 1;
+                loadApiList();
+            });
+
+            // 分页按钮事件
+            $('#prevBtn').click(function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    loadApiList();
+                    $('html, body').animate({
+                        scrollTop: $('.header').offset().top
+                    }, 300);
+                } else {
+                    layui.use('layer', function() {
+                        var layer = layui.layer;
+                        layer.msg('已经是第一页了', {
+                            icon: 6,
+                            time: 1500
+                        });
+                    });
+                }
+            });
+
+            $('#nextBtn').click(function() {
+                if (currentPage < totalPage) {
+                    currentPage++;
+                    loadApiList();
+                    $('html, body').animate({
+                        scrollTop: $('.header').offset().top
+                    }, 300);
+                } else {
+                    layui.use('layer', function() {
+                        var layer = layui.layer;
+                        layer.msg('已经是最后一页了', {
+                            icon: 6,
+                            time: 1500
+                        });
+                    });
+                }
+            });
+        });
+
+        function openDocument() {
+            layui.use('layer', function() {
+                var layer = layui.layer;
+                layer.open({
+                    type: 1,
+                    title: '<i class="fas fa-info-circle me-2"></i>文档说明',
+                    content: `<div style="padding: 20px; max-width: 800px; margin: 0 auto;">
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div style="background: white; border-radius: 12px; padding: 20px; height: 100%;">
+                                            <h5 style="font-weight: 600; margin-bottom: 15px; color: var(--ios-blue);">
+                                                <i class="fas fa-tag me-2"></i>价格说明
+                                            </h5>
+                                            <ul style="padding-left: 20px; color: #666;">
+                                                <li>本接口除非卖品共需：<strong style="color: var(--ios-orange);">2199元</strong>，全套购买有优惠</li>
+                                                <li>标价<span style="color: var(--ios-red);">999.00和null</span>表示不售卖~</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div style="background: white; border-radius: 12px; padding: 20px; height: 100%;">
+                                            <h5 style="font-weight: 600; margin-bottom: 15px; color: var(--ios-red);">
+                                                <i class="fas fa-exclamation-triangle me-2"></i>购买须知
+                                            </h5>
+                                            <ul style="padding-left: 20px; color: #666;">
+                                                <li>接口相对稳定，但不能保证百分之百一直有效</li>
+                                                <li>代码谨供学习使用！如失效不可退款...</li>
+                                                <li>购买前请先测试接口是否可用</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+                                    <h5 style="font-weight: 600; margin-bottom: 15px; color: var(--ios-green);">
+                                        <i class="fas fa-shopping-cart me-2"></i>购买方式
+                                    </h5>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <a href="https://qm.qq.com/q/mM5fiojqc8" target="_blank" 
+                                               style="display: block; background: rgba(0,122,255,0.1); border-radius: 10px; 
+                                               padding: 15px; text-decoration: none; color: var(--ios-blue); 
+                                               text-align: center; transition: all 0.3s;">
+                                                <i class="fab fa-qq fa-2x mb-2"></i>
+                                                <div>加入交流群购买</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <a href="https://qm.qq.com/q/3592ownTAQ" target="_blank" 
+                                               style="display: block; background: rgba(52,199,89,0.1); border-radius: 10px; 
+                                               padding: 15px; text-decoration: none; color: var(--ios-green); 
+                                               text-align: center; transition: all 0.3s;">
+                                                <i class="fas fa-user-tie fa-2x mb-2"></i>
+                                                <div>联系笒鬼鬼购买</div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <p style="text-align: center; margin-top: 10px; color: #666;">
+                                        笒鬼鬼QQ: <strong>2963246343</strong>
+                                    </p>
+                                </div>
+                                
+                                <div style="background: rgba(255,204,0,0.1); border-radius: 12px; padding: 15px;">
+                                    <p style="margin: 0; color: #666;">
+                                        <i class="fas fa-lightbulb me-2" style="color: var(--ios-yellow);"></i>
+                                        温馨提示：接口购买前一定要测试！
+                                    </p>
+                                </div>
+                            </div>`,
+                    area: ['80%', '80%'],
+                    btn: ['我明白了'],
+                    skin: 'layui-layer-molv'
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

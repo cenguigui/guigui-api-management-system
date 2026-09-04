@@ -1,0 +1,49 @@
+*{
+    font-family: '楷体';
+}
+body {
+            background: linear-gradient(to right, #c9c, #ccf);
+            font-family: 楷体
+        }
+ 
+        @media only screen and (min-width:700px) {
+            .content {
+                left: 50%;
+                margin-left: -25%
+            }
+        }
+ 
+        .img {
+            width: 7em;
+            height: 7em;
+            margin: auto;
+            display: block;
+            border-radius: 10em;
+            box-shadow: 3px 3px 8px 1px silver;
+            margin-bottom: 1em
+        }
+ 
+        .imgc {
+            background-image: url('./Api/Bing.php');
+            background-size: 100% 100%;
+            background-repeat: repeat;
+            top: 0;
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -33
+        }
+ 
+        .layui-layer-title {
+            background-color: #000 !important;
+            color: white !important;
+        }
+        
+        #qrimg
+        .transparent_class {
+            filter: alpha(opacity=90);
+            -moz-opacity: 0.90;
+            -khtml-opacity: 0.90;
+            opacity: 0.90;
+        }

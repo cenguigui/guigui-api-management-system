@@ -1,0 +1,177 @@
+.guigui-mainBox {
+	--guigui-filter: blur(5px);
+	--guigui-color-0: rgba(0, 0, 0, .75);
+	--guigui-color-1: #fff;
+	--guigui-color-2: #eee;
+	--guigui-color-3: #afafaf;
+	--guigui-FadeIn-Animation: fadeIn .35s ease-in-out both;
+	--guigui-FadeOut-Animation: fadeOut .35s ease-in-out both;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	z-index: 999;
+	font-size: 16px;
+	-webkit-backdrop-filter: var(--guigui-filter);
+	backdrop-filter: var(--guigui-filter)
+}
+
+.guigui-mainBox,
+.guigui-masking {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100vh
+}
+
+.guigui-mainBox .guigui-masking {
+	-webkit-background-color: var(--guigui-color-0);
+	background-color: var(--guigui-color-0);
+	z-index: 998
+}
+
+.guigui-fadeOutDiv {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 1000
+}
+
+.Div-w {
+	height: auto;
+	width: 55vw
+}
+
+.Div-h {
+	height: 75vh;
+	width: auto
+}
+
+.guigui-delDom {
+	cursor: pointer;
+	font-style: normal;
+	position: fixed;
+	right: -1em;
+	top: -1em;
+	font-size: 3.5em;
+	-webkit-transition: all .35s;
+	-o-transition: all .35s;
+	transition: all .35s;
+	color: var(--guigui-color-3)
+}
+
+.guigui-delDom:hover {
+	color: var(--guigui-color-2);
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg)
+}
+
+.guigui-fadeOutText {
+	cursor: pointer;
+	margin: .7em auto;
+	font-size: 1em;
+	width: 90%;
+	color: var(--guigui-color-1)
+}
+
+.guigui-fadeIn,
+.guigui-fadeOut {
+	-webkit-opacity: 0;
+	opacity: 0
+}
+
+.guigui-fadeIn {
+	-webkit-animation: var(--guigui-FadeIn-Animation);
+	animation: var(--guigui-FadeIn-Animation)
+}
+
+.guigui-fadeOut {
+	-webkit-animation: var(--guigui-FadeOut-Animation);
+	animation: var(--guigui-FadeOut-Animation)
+}
+
+@-webkit-keyframes fadeIn {
+	from {
+		opacity: 0
+	}
+
+	to {
+		opacity: 1
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0
+	}
+
+	to {
+		opacity: 1
+	}
+}
+
+@-webkit-keyframes fadeOut {
+	from {
+		opacity: 1
+	}
+
+	to {
+		opacity: 0
+	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 1
+	}
+
+	to {
+		opacity: 0
+	}
+}
+
+.guigui-simpleAlert {
+	--guigui-color-0: rgba(255, 192, 203, .75);
+	--guigui-color-1: #fff;
+	position: fixed;
+	top: 5%;
+	left: -100%;
+	padding: 10px 20px;
+	font-size: 1em;
+	-webkit-background-color: var(--guigui-color-0);
+	background-color: var(--guigui-color-0);
+	color: var(--guigui-color-1);
+	z-index: 1000;
+	-webkit-transition: left .35s;
+	-o-transition: left .35s;
+	transition: left .35s
+}
+
+@media screen and (max-width:401px) {
+	.guigui-delDom {
+		right: -0.4em;
+		top: -1.2em;
+		font-size: 2.5em
+	}
+
+	.Div-w {
+		height: auto;
+		width: 85vw
+	}
+
+	.Div-h {
+		height: 55vh;
+		width: auto
+	}
+}

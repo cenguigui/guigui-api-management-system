@@ -1,0 +1,407 @@
+:root{
+    --guigui_color_all:#ee7f71;
+}
+
+/* font */
+@font-face{
+	font-family:GuiguiFontStyle;
+	/*src:url("https://jsd.onmicrosoft.cn/gh/cenguigui/cdn@master/fonts/fonts.woff2") format("woff2");*/
+	/* src: url("https://cdn.cenguigui.cn/fonts/fonts.woff2") format("woff2"); */
+	src:url("https://cdn.jsdmirror.com/gh/cenguigui/cdn@master/fonts/fonts.woff2") format("woff2");
+	/*src:url("https://jsd.cdn.zzko.cn/gh/cenguigui/cdn@master/fonts/fonts.woff2") format("woff2");*/
+	font-display:swap;
+}
+*{
+	font-family:GuiguiFontStyle;
+}
+html,body,h1,h2,h3,h4,h5,h6,p,code,label,span,code, kbd, pre, samp{
+    font-family:GuiguiFontStyle!important;
+}
+
+
+body:before {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /*背景图片*/
+    /*background: url('https://cache.cenguigui.cn/images/img/1.jpg') center 0 no-repeat; */
+    /*https://cdn-hw-static2.shanhutech.cn/bizhi/staticwp/202404/43de4a8f12893846f8e1b94061e564cf--1328428725.jpg*/
+    background: var(--guigui_bg_img);
+    background-repeat: no-repeat;
+	background-position: center top;
+    background-size: cover;
+}
+
+::-webkit-input-placeholder {
+    color: #ffffff;
+}
+
+:-moz-placeholder {
+    color: #ffffff;
+}
+
+::-moz-placeholder {
+    color: #ffffff;
+}
+
+:-ms-input-placeholder {
+    color: #ffffff;
+}
+
+body {
+    /*background: #141414;*/
+    color: #fff;
+    cursor: url("../img/normal.cur"), default
+}
+
+a,
+button {
+    cursor: url("../img/link.cur"), pointer
+}
+
+ul {
+    padding-inline-start: 0px;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: rgba(255,255,255,0.1);
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ee7f71;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0 #ee7f71;
+}
+
+.hanstop {
+    position: fixed;
+    z-index: 1000;
+    width: 100vw;
+    height: 88px;
+    background: rgba(0, 0, 0, .6);
+    transition: .5s;
+    top: 0px;
+}
+
+.hans-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 66px
+}
+
+.theme-feature-container {
+    overflow: hidden;
+    margin-top: 6vh;
+    width: calc(100% + 20px);
+    transform: translateX(-10px);
+    margin-bottom: 56px;
+}
+
+.theme-feature-container ul {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    flex-wrap: wrap
+}
+
+.theme-feature-container ul li {
+    margin: 0;
+    padding: 10px;
+    width: calc(25% - 30px);
+    text-align: center
+}
+
+.rightico {
+    position: fixed;
+    right: 17vw;
+    z-index: 9999
+}
+
+@media screen and (max-width:1270px) {
+    .theme-feature-container ul li {
+        width: calc(33% - 24px)
+    }
+}
+
+@media screen and (max-width:990px) {
+    .rightico {
+        position: fixed;
+        right: 10px;
+        z-index: 9999
+    }
+}
+
+@media screen and (max-width:680px) {
+    .theme-feature-container ul li {
+        width: calc(50% - 29.5px)
+    }
+}
+
+@media screen and (max-width:370px) {
+    .theme-feature-container ul li {
+        width: calc(50% - 29.5px)
+    }
+}
+
+.theme-feature-container ul li .item-box {
+    position: relative;
+    padding: 30px;
+    cursor: url("../img/link.cur"), pointer;
+    border: 1px solid #ee7f71;
+    border-radius: 8px;
+}
+
+@media screen and (max-width:460px) {
+    .theme-feature-container ul li .item-box {
+        padding: 30px 15px
+    }
+}
+
+.theme-feature-container ul li .item-box:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: currentColor;
+    content: "";
+    opacity: .05;
+    transition: .2s;
+    -o-border-radius: 10px;
+    -khtml-opacity: .05;
+    -moz-opacity: .05
+}
+
+.theme-feature-container ul li .item-box:hover:before {
+    opacity: .1;
+    -khtml-opacity: .1;
+    -moz-opacity: .1
+}
+
+.theme-feature-container ul li .item-box img {
+    display: block;
+    margin: 0 auto 20px;
+    width: 40px;
+    height: 40px
+}
+
+@media screen and (max-width:460px) {
+    .theme-feature-container ul li .item-box .icon {
+        width: 35px;
+        height: 35px
+    }
+}
+
+.theme-feature-container ul li .item-box .icon svg {
+    width: 100%;
+    height: auto
+}
+
+.theme-feature-container ul li .item-box .icon svg * {
+    fill: currentColor !important;
+    stroke: none !important
+}
+
+.theme-feature-container ul li .item-box h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1;
+    -o-text-overflow: ellipsis
+}
+
+.hansheader {
+    position: fixed;
+    top: 16px;
+    width: 100%;
+    /* z-index: 999999; */
+}
+
+.logo {
+    position: fixed;
+    z-index: 9999;
+    height: 56px
+}
+
+.hanlogo img {
+    transition: .3s;
+    /*filter: hue-rotate(206deg) saturate(0.8) brightness(0.8);*/
+    animation: hue-rotate-animation 5s linear infinite;
+}
+
+@keyframes hue-rotate-animation {
+      0% {
+        filter: hue-rotate(1deg) saturate(0.8) brightness(0.8);
+      }
+      100% {
+        filter: hue-rotate(361deg) saturate(0.8) brightness(0.8);
+      }
+    }
+
+.hanlogo img:hover {
+    opacity: .5
+}
+
+.hansheader ul li a img {
+    width: 2.5em;
+    height: 2.5em;
+    transition: .3s
+}
+
+.hansheader a img:hover {
+    opacity: .5
+}
+
+.hansheader ul {
+    display: inline;
+    white-space: nowrap
+}
+
+.hansheader ul li {
+    padding: 10px;
+    list-style-type: none;
+    white-space: nowrap
+}
+
+.hans-hidden {
+    display: none
+}
+
+.theme-feature-container ul li a {
+    color: #fff;
+    text-decoration: none
+}
+
+.hansdiv {
+    margin-top: 6vh;
+    padding-bottom: 18px;
+    width: 100%;
+    min-height: 20vh;
+    border-radius: 12px;
+    border: 1px solid var(--guigui_color_all);
+    /*background: #e0208c;*/
+    /*background: linear-gradient(to right, #693EF8 0, #34EA87 100%)*/
+}
+
+.hansdiv .hanshr {
+    display: block;
+    margin: 25px auto 0;
+    padding-top: 25px;
+    max-width: 900px;
+    border-top: 1px solid hsla(0, 0%, 100%, .1);
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    font-size: 15px
+}
+.hansdiv .hanshr a{
+    color: #ee7f71;
+    transition: all 0.5s;
+}
+.hansdiv .hanshr a:hover{
+    color: #ffffff;
+    border-bottom: 1px solid #ee7f71;
+}
+
+.hansdiv h3 {
+    color: #fff;
+    font-weight: 700;
+    font-size: 26px
+}
+
+.hansgg {
+    margin: auto;
+    padding: 16px;
+    width: 80%
+}
+
+.footer {
+    margin-bottom: 86px
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    transition: .3s
+}
+
+.footer a:hover {
+    color: grey;
+    text-decoration: none
+}
+
+.footer ul {
+    margin-bottom: 18px;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap
+}
+
+.footer ul li {
+    display: inline-block;
+    margin: 6px;
+    white-space: nowrap
+}
+
+.footer img {
+    width: 2.5em;
+    height: 2.5em;
+    transition: .3s
+}
+
+.footer a img:hover {
+    opacity: .5
+}
+
+.hancentext {
+    text-align: center
+}
+
+.hans-parallax>use {
+    animation: hans-wave-move 12s linear infinite
+}
+
+.hans-parallax>use:nth-child(1) {
+    animation-delay: -2s
+}
+
+.hans-parallax>use:nth-child(2) {
+    animation-delay: -2s;
+    animation-duration: 5s
+}
+
+.hans-parallax>use:nth-child(3) {
+    animation-delay: -4s;
+    animation-duration: 3s
+}
+
+@keyframes hans-wave-move {
+    0% {
+        transform: translate(-90px, 0)
+    }
+
+    100% {
+        transform: translate(85px, 0)
+    }
+}
+
+.layui-layer-content {
+    color: #000000
+}
